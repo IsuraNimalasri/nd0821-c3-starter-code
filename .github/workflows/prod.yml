@@ -15,7 +15,7 @@ jobs:
           python-version: 3.8
       
       - name: Install Dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r starter/requirements.txt
 
       # - name: Configure AWS creadntials
       #   uses: aws-actions/configure-aws-credentials@v1
