@@ -12,7 +12,7 @@ cat_features = [
     "native-country"]
 
 def test_preprocessing():
-    _, _, encoder, lb, _ ,_= preprocessing("data/census_cleaned_copy.csv", cat_features)
+    _, _, encoder, lb, _ ,_= preprocessing("data/census_cleaned.csv", cat_features)
     assert os.path.isfile("model/encoder.pkl")
     assert os.path.isfile("model/lb.pkl")
 
