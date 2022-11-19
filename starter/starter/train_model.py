@@ -19,7 +19,7 @@ def preprocessing(data_path, cat_features):
     data = pd.read_csv(data_path)
     df_train, df_test = train_test_split(data, test_size=0.2)
 
-    X_train, y_train, encoder, lb = process_data(
+    X_train, y_train, encoder, lb,scaler = process_data(
         df_train, cat_features, label="salary", training=True
     )
 
@@ -27,7 +27,11 @@ def preprocessing(data_path, cat_features):
         pickle.dump(encoder, file_encoder)
     with open("model/lb.pkl", 'wb') as file_lb:
         pickle.dump(lb, file_lb)
-    return X_train, y_train, encoder, lb, df_test
+    
+    with open("model/scaler.pkl", 'wb') as file_scaler:
+        pickle.dump(scaler, file_scaler)
+        
+    return X_train, y_train, encoder, lb, scaler, df_test
 
 # train model
 
@@ -40,11 +44,11 @@ def train(X_train, y_train):
 
 def test_model(test, cat_features=None, label="salary"):
     # load model
-    model, encoder, lb = load_model(
-        'model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl')
+    model, encoder, lb ,sc = load_model(
+        'model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl','model/scaler.pkl')
     # testing
-    X_test, y_test, _, _ = process_data(
-        test, categorical_features=cat_features, label=label, training=False, encoder=encoder, lb=lb)
+    X_test, y_test, _, _ ,_= process_data(
+        test, categorical_features=cat_features, label=label, training=False, encoder=encoder, lb=lb, scaler=sc)
 
     preds = inference(model, X_test)
     precision, recall, fbeta = compute_model_metrics(y_test, preds)

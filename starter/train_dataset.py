@@ -12,8 +12,8 @@ cat_features = [
 "sex",
 "native-country"]
 
-X_train, y_train, encoder, lb, df_test = preprocessing("data/census_cleaned_copy.csv", cat_features)
+X_train, y_train, encoder, lb,sc, df_test = preprocessing("data/census_cleaned_copy.csv", cat_features)
 model = train(X_train, y_train)
 p,r,f = test_model(df_test, cat_features, label="salary" )
 print(p,r,f)
-slice_evaluation(df_test, model, cat_features, encoder, lb)
+slice_evaluation(df_test, model, cat_features, encoder, lb,sc)

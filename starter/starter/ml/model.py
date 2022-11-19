@@ -67,17 +67,18 @@ def inference(model, X):
     preds = model.predict(X)
     return preds
 
-def load_model(model_path, encoder_path, lb_path):
+def load_model(model_path, encoder_path, lb_path,sc_path):
     """
     load the saved model
     """
     loaded_model = pickle.load(open(model_path, 'rb'))
     loaded_encoder = pickle.load(open(encoder_path, 'rb'))
     loaded_lb = pickle.load(open(lb_path, 'rb'))
-    return loaded_model, loaded_encoder, loaded_lb
+    loaded_sc = pickle.load(open(sc_path, 'rb'))
+    return loaded_model, loaded_encoder, loaded_lb ,loaded_sc
 
 
-def slice_evaluation(df, model, cat_features, encoder, lb):
+def slice_evaluation(df, model, cat_features, encoder, lb,sc):
     """
     computes performance on model slices.
 
@@ -95,10 +96,10 @@ def slice_evaluation(df, model, cat_features, encoder, lb):
         for feature in cat_features:
             for cls in df[feature].unique():
                 slice = df[df[feature] == cls]
-                x_test, y_test, _, _ = process_data(
+                x_test, y_test, _, _ ,_= process_data(
                     slice,
                     categorical_features=cat_features, training=False,
-                    label="salary", encoder=encoder, lb=lb)
+                    label="salary", encoder=encoder, lb=lb,scaler=sc)
                 y_pred_slice = inference(model, x_test)
                 precision, recall, fbeta = compute_model_metrics(y_test, y_pred_slice)
                 slice_metric = f"cat: {feature:}, var: {cls}, precision {precision:.2f}, recall {recall:.2f}, F1 {fbeta:.2f} \n"
