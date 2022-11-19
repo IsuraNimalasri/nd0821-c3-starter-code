@@ -34,7 +34,7 @@ jobs:
         run: |
           ls -l
           pwd
-          #python -m pytest 
+          python -m pytest 
 
       - name: Lint with flake8 
         run: |
