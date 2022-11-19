@@ -32,7 +32,7 @@ jobs:
       
       - name: Run unit tests
         run: |
-          ls
+          ls -l
           pwd
           python -m pytest 
 
