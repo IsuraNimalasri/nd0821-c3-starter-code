@@ -32,8 +32,7 @@ jobs:
       
       - name: Run unit tests
         run: |
-          ls model/
-          pwd
+          dvc pull
           python -m pytest 
 
       - name: Lint with flake8 
