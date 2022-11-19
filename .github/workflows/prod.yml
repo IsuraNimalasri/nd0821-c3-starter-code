@@ -26,6 +26,7 @@ jobs:
       
       - name: Run unit tests
         run: |
+          cd starter
           python -m pytest
 
       - name: Lint with flake8 
