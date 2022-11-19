@@ -40,4 +40,6 @@ The given data's feature imbalance produces very high variation between slices. 
 
 ## Caveats and Recommendations
 
-This model was trained with census data from 1994. Though it provides a useful experiment, no conclusion should be drawn from applying this model to current data, more than 25 years later. It is better to see this model as a way to obtain insights from the home economy landscape of the 90s.
+There is no conclusion should be drawn from applying this model to current data, more than 25 years later.
+
+It is better to see this model as a way to obtain insights from the home economy landscape of the 90s.
