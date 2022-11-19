@@ -32,7 +32,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8
           pip install pytest
-          cd starter
           python -m pytest
 
       - name: Lint with flake8 
