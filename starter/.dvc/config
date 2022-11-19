@@ -1,5 +1,0 @@
-[core]
-    remote = udacity_3
-    autostage = true
-['remote "udacity_3"']
-    url = s3://udacity-project-3-mlops-isura/udacity_3
