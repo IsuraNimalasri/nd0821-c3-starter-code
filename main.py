@@ -56,7 +56,12 @@ app = FastAPI()
 model, encoder, lb ,sc= load_model(
     'model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl','model/scaler.pkl')
 
-
+@app.on_event("startup")
+async def startup_event(): 
+    global model, encoder, lb ,sc
+    
+    model, encoder, lb ,sc= load_model(
+    'model/model.pkl', 'model/encoder.pkl', 'model/lb.pkl','model/scaler.pkl')
 
 
 @app.get("/")
